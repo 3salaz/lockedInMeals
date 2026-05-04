@@ -1,0 +1,50 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isApprovedAdmin() {
+      return isSignedIn()
+        && request.auth.token.email in [
+          "3salaz.dev@gmail.com",
+        ];
+    }
+
+    match /wineChapelSignups/{signupId} {
+      allow read: if false;
+
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          "email",
+          "source",
+          "createdAt"
+        ]) &&
+        request.resource.data.email is string &&
+        request.resource.data.email.size() <= 254 &&
+        request.resource.data.email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$") &&
+        request.resource.data.email == signupId &&
+        request.resource.data.source == "the-wine-chapel-landing-page" &&
+        request.resource.data.createdAt == request.time;
+
+      allow update, delete: if false;
+    }
+
+    match /siteConfig/theme {
+      allow read: if true;
+      allow create, update, delete: if isApprovedAdmin();
+    }
+
+    match /siteContent/homepage {
+      allow read: if true;
+      allow create, update, delete: if isApprovedAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

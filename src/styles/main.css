@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-muted: #1e1e1e;
+  --color-text: #f8f6f2;
+  --color-text-muted: #b8b2a7;
+  --color-accent: #d8c3a5;
+  --color-accent-soft: #b85c38;
+  --color-border: rgba(255, 255, 255, 0.12);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
