@@ -25,6 +25,7 @@ type FeatureCardsSectionProps = {
     snap?: boolean;
 };
 
+
 const iconMap = {
     map: MapPinned,
     music: Music,
@@ -46,6 +47,9 @@ export default function FeatureCardsSection({
 }: FeatureCardsSectionProps) {
     const isCentered = content.align === "center";
     const hasCta = Boolean(content.ctaLabel && content.ctaHref);
+
+    const gridColumnsClass =
+        content.columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
     return (
         <SectionFrame
@@ -101,7 +105,12 @@ export default function FeatureCardsSection({
                     </div>
                 </motion.div>
 
-                <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+                <div
+                    className={[
+                        "flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 lg:grid lg:overflow-visible lg:pb-0",
+                        gridColumnsClass,
+                    ].join(" ")}
+                >
                     {content.items.map((item, index) => {
                         const Icon = iconMap[item.icon] ?? Leaf;
 
@@ -140,9 +149,11 @@ export default function FeatureCardsSection({
                                     {item.title}
                                 </h3>
 
-                                <p className="mt-3 text-sm leading-6 text-(--color-text-muted) sm:leading-7">
-                                    {item.text}
-                                </p>
+                                {item.text && (
+                                    <p className="mt-3 text-sm leading-6 text-(--color-text-muted) sm:leading-7">
+                                        {item.text}
+                                    </p>
+                                )}
                             </motion.div>
                         );
                     })}

@@ -9,7 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "tsc -b",
-    "seed:homepage": "tsx --env-file=.env scripts/seedHomepageContent.ts"
+    "seed:homepage": "tsx --env-file=.env scripts/seedHomepageContent.ts",
+    "deploy": "npm run typecheck && npm run build && firebase deploy",
+    "deploy:hosting": "npm run typecheck && npm run build && firebase deploy --only hosting",
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "deploy:storage": "firebase deploy --only storage",
+    "deploy:all": "npm run typecheck && npm run build && firebase deploy --only hosting,firestore:rules,storage"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

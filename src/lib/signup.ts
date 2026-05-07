@@ -5,18 +5,18 @@ const normalizeEmail = (email: string) => {
     return email.trim().toLowerCase();
 };
 
-export async function signupForWineChapelUpdates(email: string) {
+export async function signupForUpdates(email: string) {
     const normalizedEmail = normalizeEmail(email);
 
     if (!normalizedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
         throw new Error("Please enter a valid email address.");
     }
 
-    const signupRef = doc(db, "wineChapelSignups", normalizedEmail);
+    const signupRef = doc(db, "webSignups", normalizedEmail);
 
     await setDoc(signupRef, {
         email: normalizedEmail,
-        source: "the-wine-chapel-landing-page",
+        source: "web-landing-page",
         createdAt: serverTimestamp(),
     });
 

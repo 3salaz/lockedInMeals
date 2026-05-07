@@ -33,7 +33,7 @@ export const lockedInMealsHomepageContent: HomepageContent = {
 
     featureStory: {
         id: "about",
-        eyebrow: "Our Approach",
+        eyebrow: "Our Mission Statement",
         heading: "Meal prep built for consistency, not guesswork.",
         body: [
             "Locked In Meals helps customers stay consistent with fresh, ready-to-eat meals made for busy schedules.",
@@ -88,7 +88,7 @@ export const lockedInMealsHomepageContent: HomepageContent = {
         eyebrow: "How It Works",
         heading: "Eating clean should not feel like another full-time job.",
         body: "Locked In Meals keeps the process simple: choose your meals, get them prepped, then heat and eat when your schedule gets busy.",
-        align: "center",
+        align: "left",
         ctaLabel: "Order Meals",
         ctaHref: "#contact",
         items: [
@@ -113,5 +113,38 @@ export const lockedInMealsHomepageContent: HomepageContent = {
                 text: "Heat, eat, and keep moving toward your goals with less guesswork.",
             },
         ],
+    },
+
+    businessCards: {
+        id: "who-its-for",
+        eyebrow: "Who It’s For",
+        heading: "Built for people who want food handled without falling off track.",
+        body: "Locked In Meals is designed for busy people who want structure, convenience, and consistency.",
+        align: "left",
+        columns: 3,
+        ctaLabel: "Order Meals",
+        ctaHref: "#contact",
+        items: [
+            { icon: "dumbbell", title: "Gym & Fitness Goals" },
+            { icon: "calendar", title: "Busy Work Weeks" },
+            { icon: "users", title: "Families & Professionals" },
+            { icon: "utensils", title: "Clean Eating" },
+            { icon: "truck", title: "Convenient Delivery" },
+            { icon: "leaf", title: "Better Routine" },
+        ],
+    },
+
+    contact: {
+        id: "contact",
+        eyebrow: "Stay Locked In",
+        heading: "Make meals one less thing to worry about?",
+        subheading: "Fresh meal prep, handled.",
+        body: "Enter your email to ask about meal plans, delivery, availability, or custom prep options.",
+        emailPlaceholder: "Enter your email",
+        submitLabel: "Request Meal Info",
+        submittingLabel: "Sending...",
+        secondaryCtaLabel: "Email Us",
+        secondaryCtaHref: "mailto:hello@lockedinmeals.com?subject=Meal Prep Inquiry | Web",
+        footerText: "© 2026 Locked In Meals. All rights reserved.",
     },
 };

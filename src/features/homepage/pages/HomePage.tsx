@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
 import SiteNav from "@/components/layout/SiteNav";
-import Partners from "../components/Partners";
-import ContactCTA from "../components/ContactCTA";
 
 import storyImage from "@/assets/images/bodega-entrance.jpg";
 import Hero from "../components/Hero";
@@ -11,6 +9,7 @@ import { useHomepageContent } from "@/features/homepage/hooks/useHomepageContent
 import FeaturedStorySection from "../components/FeaturedStorySection";
 import HomepageLoader from "@/components/layout/HomepageLoader";
 import FeatureCardsSection from "../components/FeatureCardsSection";
+import ContactSection from "../components/ContactSection";
 
 
 export default function HomePage() {
@@ -40,8 +39,9 @@ export default function HomePage() {
             <FeaturedStorySection content={homepageContent.featureStory} />
             <FeatureCardsSection content={homepageContent.featureCards} />
             <FeatureCardsSection content={homepageContent.communityCards} />
-            <Partners />
-            <ContactCTA />
+            <FeatureCardsSection content={homepageContent.businessCards} />
+            {/* <Partners /> */}
+            <ContactSection content={homepageContent.contact} />
         </main>
     );
 }

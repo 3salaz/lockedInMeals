@@ -56,7 +56,7 @@ export type FeatureCardsIconKey =
 export type FeatureCardsItem = {
     icon: FeatureCardsIconKey;
     title: string;
-    text: string;
+    text?: string;
 };
 
 export type FeatureCardsContent = {
@@ -65,9 +65,24 @@ export type FeatureCardsContent = {
     heading: string;
     body: string;
     align?: "left" | "center";
+    columns?: 3 | 4;
     ctaLabel?: string;
     ctaHref?: string;
     items: FeatureCardsItem[];
+};
+
+export type ContactSectionContent = {
+    id: string;
+    eyebrow: string;
+    heading: string;
+    subheading: string;
+    body: string;
+    emailPlaceholder: string;
+    submitLabel: string;
+    submittingLabel: string;
+    secondaryCtaLabel?: string;
+    secondaryCtaHref?: string;
+    footerText: string;
 };
 
 export type HomepageContent = {
@@ -77,5 +92,7 @@ export type HomepageContent = {
     featureStory: FeatureStoryContent;
     featureCards: FeatureCardsContent;
     communityCards: FeatureCardsContent;
+    businessCards: FeatureCardsContent;
     updatedAt?: Date;
+    contact: ContactSectionContent;
 };

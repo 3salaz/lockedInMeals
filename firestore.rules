@@ -14,7 +14,7 @@ service cloud.firestore {
         ];
     }
 
-    match /wineChapelSignups/{signupId} {
+    match /webSignups/{signupId} {
       allow read: if false;
 
       allow create: if
@@ -27,10 +27,20 @@ service cloud.firestore {
         request.resource.data.email.size() <= 254 &&
         request.resource.data.email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$") &&
         request.resource.data.email == signupId &&
-        request.resource.data.source == "the-wine-chapel-landing-page" &&
+        request.resource.data.source == "web-landing-page" &&
         request.resource.data.createdAt == request.time;
 
       allow update, delete: if false;
+    }
+
+    match /mealItems/{mealId} {
+      allow read: if true;
+      allow create, update, delete: if isApprovedAdmin();
+    }
+
+    match /weeklyMenus/{menuId} {
+      allow read: if true;
+      allow create, update, delete: if isApprovedAdmin();
     }
 
     match /siteConfig/theme {

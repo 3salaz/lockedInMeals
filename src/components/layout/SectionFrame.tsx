@@ -42,7 +42,7 @@ export default function SectionFrame({
         <section
             id={id}
             className={[
-                "relative isolate overflow-hidden bg-(--color-background) text-(--color-text)",
+                "relative isolate overflow-hidden bg-(--color-surface-muted) text-(--color-text)",
                 fullHeight ? "h-dvh" : "min-h-0",
                 snap ? "snap-start snap-always" : "",
                 className,

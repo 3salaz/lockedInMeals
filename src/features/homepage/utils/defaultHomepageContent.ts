@@ -28,6 +28,7 @@ export const defaultHomepageContent: HomepageContent = {
         heroImageUrl: defaultHeroImage,
         highlights: ["Core service", "Customer benefit", "Local expertise", "Easy next step"],
     },
+
     featureStory: {
         id: "about",
         eyebrow: "About The Brand",
@@ -50,6 +51,7 @@ export const defaultHomepageContent: HomepageContent = {
             "For clients who do not need a modal, leave the button label or modal content empty in the CMS.",
         ],
     },
+
     featureCards: {
         id: "services",
         eyebrow: "Services",
@@ -83,7 +85,7 @@ export const defaultHomepageContent: HomepageContent = {
         eyebrow: "Get Connected",
         heading: "Give visitors a reason to take the next step.",
         body: "Use this section to highlight updates, access, community, perks, or another reason customers should stay connected.",
-        align: "center",
+        align: "left",
         ctaLabel: "Get Started",
         ctaHref: "#contact",
         items: [
@@ -109,4 +111,37 @@ export const defaultHomepageContent: HomepageContent = {
             },
         ],
     },
+    businessCards: {
+        id: "who-its-for",
+        eyebrow: "Who It’s For",
+        heading: "Built for people who want food handled without falling off track.",
+        body: "Locked In Meals is designed for busy people who want structure, convenience, and consistency.",
+        align: "left",
+        columns: 3,
+        ctaLabel: "Order Meals",
+        ctaHref: "#contact",
+        items: [
+            { icon: "dumbbell", title: "Gym & Fitness Goals" },
+            { icon: "calendar", title: "Busy Work Weeks" },
+            { icon: "users", title: "Families & Professionals" },
+            { icon: "utensils", title: "Clean Eating" },
+            { icon: "truck", title: "Convenient Delivery" },
+            { icon: "leaf", title: "Better Routine" },
+        ],
+    },
+
+    contact: {
+        id: "contact",
+        eyebrow: "Get Started",
+        heading: "Ready to take the next step?",
+        subheading: "Let’s make it easy to connect.",
+        body: "Enter your email for updates, questions, bookings, or next steps.",
+        emailPlaceholder: "Enter your email",
+        submitLabel: "Submit",
+        submittingLabel: "Submitting...",
+        secondaryCtaLabel: "Contact Us",
+        secondaryCtaHref: "mailto:hello@example.com",
+        footerText: "© 2026 Your Brand. All rights reserved.",
+    },
+
 };

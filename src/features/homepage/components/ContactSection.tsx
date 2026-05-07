@@ -2,10 +2,19 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
 
-import SnapSection from "@/components/layout/SnapSection";
-import { signupForWineChapelUpdates } from "@/lib/wineChapelSignup";
+import SectionFrame from "@/components/layout/SectionFrame";
+import { signupForUpdates } from "@/lib/signup";
+import type { ContactSectionContent } from "@/features/homepage/types/homepageContent.types";
 
-export default function ContactCTA() {
+type ContactSectionProps = {
+    content: ContactSectionContent;
+    snap?: boolean;
+};
+
+export default function ContactSection({
+    content,
+    snap = true,
+}: ContactSectionProps) {
     const [signupEmail, setSignupEmail] = useState("");
     const [signupStatus, setSignupStatus] = useState<
         "idle" | "loading" | "success" | "error"
@@ -19,7 +28,7 @@ export default function ContactCTA() {
             setSignupStatus("loading");
             setSignupMessage("");
 
-            const result = await signupForWineChapelUpdates(signupEmail);
+            const result = await signupForUpdates(signupEmail);
 
             setSignupStatus("success");
             setSignupMessage(result.message);
@@ -37,8 +46,9 @@ export default function ContactCTA() {
     };
 
     return (
-        <SnapSection
-            id="contact"
+        <SectionFrame
+            id={content.id}
+            snap={snap}
             maxWidth="5xl"
             className="min-h-svh"
             contentClassName="flex-col items-stretch pt-16 sm:pt-24"
@@ -75,21 +85,19 @@ export default function ContactCTA() {
                     }}
                 >
                     <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.28em] text-(--color-accent) sm:mb-4 sm:text-xs">
-                        Start at the Beginning
+                        {content.eyebrow}
                     </p>
 
                     <h2 className="mx-auto max-w-2xl text-4xl leading-none font-semibold text-(--color-text) sm:text-5xl lg:text-6xl">
-                        Wine Not?!
+                        {content.heading}
                     </h2>
 
                     <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-(--color-text) sm:mt-4 sm:text-xl sm:leading-8">
-                        Build something worth gathering around?
+                        {content.subheading}
                     </p>
 
                     <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-(--color-text-muted) sm:mt-4 sm:text-base sm:leading-8">
-                        Join the Wine Crew for updates, or reach out if you are interested
-                        in partnering, collaborating, or helping shape the next chapter of
-                        The Wine Chapel.
+                        {content.body}
                     </p>
 
                     <form
@@ -101,7 +109,7 @@ export default function ContactCTA() {
                             required
                             value={signupEmail}
                             onChange={(event) => setSignupEmail(event.target.value)}
-                            placeholder="Enter your email for updates"
+                            placeholder={content.emailPlaceholder}
                             disabled={signupStatus === "loading"}
                             className="min-h-12 flex-1 rounded-full border border-(--color-border) bg-(--color-surface) px-5 text-sm text-(--color-text) outline-none transition placeholder:text-(--color-text-muted) focus:border-(--color-accent) focus:bg-(--color-surface-muted) disabled:cursor-not-allowed disabled:opacity-60"
                         />
@@ -114,7 +122,9 @@ export default function ContactCTA() {
                             transition={{ type: "spring", stiffness: 420, damping: 18 }}
                             className="inline-flex min-h-12 items-center justify-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-background) shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition disabled:cursor-not-allowed disabled:opacity-70"
                         >
-                            {signupStatus === "loading" ? "Joining..." : "Join the Wine Crew"}
+                            {signupStatus === "loading"
+                                ? content.submittingLabel
+                                : content.submitLabel}
                         </motion.button>
                     </form>
 
@@ -135,25 +145,27 @@ export default function ContactCTA() {
                         </motion.p>
                     )}
 
-                    <div className="mt-5 flex justify-center">
-                        <motion.a
-                            href="mailto:hello@thewinechapel.com?subject=Partnership Inquiry - The Wine Chapel"
-                            whileTap={{ scale: 0.96 }}
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ type: "spring", stiffness: 420, damping: 18 }}
-                            className="inline-flex min-h-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-6 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted)"
-                        >
-                            Partner With Us
-                        </motion.a>
-                    </div>
+                    {content.secondaryCtaLabel && content.secondaryCtaHref && (
+                        <div className="mt-5 flex justify-center">
+                            <motion.a
+                                href={content.secondaryCtaHref}
+                                whileTap={{ scale: 0.96 }}
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ type: "spring", stiffness: 420, damping: 18 }}
+                                className="inline-flex min-h-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-6 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted)"
+                            >
+                                {content.secondaryCtaLabel}
+                            </motion.a>
+                        </div>
+                    )}
                 </motion.div>
             </div>
 
             <footer className="shrink-0 border-t border-(--color-border) pt-4 text-center sm:pt-5">
                 <p className="text-xs text-(--color-text-muted) sm:text-sm">
-                    © 2026 The Wine Chapel. All rights reserved.
+                    {content.footerText}
                 </p>
             </footer>
-        </SnapSection>
+        </SectionFrame>
     );
 }

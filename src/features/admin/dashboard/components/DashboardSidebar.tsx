@@ -17,12 +17,12 @@ const navItems = [
         path: "/admin/pages/home",
     },
     {
-        label: "Experiences",
-        path: "/admin/experiences",
+        label: "Meal Inventory",
+        path: "/admin/meals",
     },
     {
-        label: "Partners",
-        path: "/admin/partners",
+        label: "Weekly Menu",
+        path: "admin/weekly-menu"
     },
     {
         label: "Settings",
@@ -47,7 +47,7 @@ export default function DashboardSidebar() {
         <>
             <div className="mb-10">
                 <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent)">
-                    The Wine Chapel
+                    Client
                 </p>
 
                 <h2 className="mt-3 text-xl font-semibold text-(--color-text)">
@@ -90,7 +90,7 @@ export default function DashboardSidebar() {
             <header className="sticky top-0 z-40 flex items-center justify-between border-b border-(--color-border) bg-(--color-background) px-5 py-4 backdrop-blur lg:hidden">
                 <div>
                     <p className="text-[10px] uppercase tracking-[0.3em] text-(--color-accent)">
-                        The Wine Chapel
+                        Client
                     </p>
 
                     <p className="mt-1 text-sm font-medium text-(--color-text)">
