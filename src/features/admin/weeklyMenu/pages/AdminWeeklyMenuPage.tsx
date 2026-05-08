@@ -1,11 +1,10 @@
 import { useMemo, useState } from "react";
 
 import { useMealItems } from "@/features/meals/hooks/useMealItems";
-import { saveWeeklyMenu } from "@/features/weeklyMenu/services/weeklyMenuService";
 import { useWeeklyMenus } from "@/features/weeklyMenu/hooks/useWeeklyMenus";
-import type { WeeklyMenu } from "@/features/weeklyMenu/types/weeklyMenu.types";
-
+import { saveWeeklyMenu } from "@/features/weeklyMenu/services/weeklyMenuService";
 import type {
+    WeeklyMenu,
     WeeklyMenuFormData,
     WeeklyMenuStatus,
 } from "@/features/weeklyMenu/types/weeklyMenu.types";
@@ -49,8 +48,22 @@ function getNextFourWeekOptions() {
     });
 }
 
+function getMenuTimingStatus(weekStartDate: string) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const start = new Date(`${weekStartDate}T00:00:00`);
+    const end = new Date(start);
+    end.setDate(start.getDate() + 6);
+
+    if (today < start) return "Pending";
+    if (today > end) return "Past";
+    return "Current";
+}
+
 export default function AdminWeeklyMenuPage() {
     const { mealItems, loadingMealItems, mealItemsError } = useMealItems();
+
     const {
         weeklyMenus,
         loadingWeeklyMenus,
@@ -76,6 +89,24 @@ export default function AdminWeeklyMenuPage() {
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState("");
 
+    const usedWeekStartDates = useMemo(() => {
+        return new Set(weeklyMenus.map((menu) => menu.weekStartDate));
+    }, [weeklyMenus]);
+
+    const availableWeekOptions = useMemo(() => {
+        return weekOptions.filter((option) => {
+            return (
+                option.value === formData.weekStartDate ||
+                !usedWeekStartDates.has(option.value)
+            );
+        });
+    }, [weekOptions, usedWeekStartDates, formData.weekStartDate]);
+
+    const draftMenus = weeklyMenus.filter((menu) => menu.status === "draft");
+    const publishedMenus = weeklyMenus.filter(
+        (menu) => menu.status === "published",
+    );
+
     const canPublish =
         Boolean(formData.weekStartDate) &&
         Boolean(formData.featuredMealId) &&
@@ -94,9 +125,28 @@ export default function AdminWeeklyMenuPage() {
         }));
     }
 
+    function loadMenuIntoForm(menu: WeeklyMenu) {
+        setFormData({
+            weekStartDate: menu.weekStartDate,
+            status: menu.status,
+            featuredMealId: menu.featuredMealId,
+            mealIds: menu.mealIds,
+            pricePerMeal: String(menu.pricePerMeal),
+            addons: menu.addons.join("\n"),
+            orderDeadline: menu.orderDeadline,
+            pickupDeliveryText: menu.pickupDeliveryText,
+            deliveryAreas: menu.deliveryAreas.join("\n"),
+            pickupAreas: menu.pickupAreas.join("\n"),
+        });
+
+        setMessage(`Editing menu for ${menu.weekStartDate}.`);
+    }
+
     async function handleSave(status: WeeklyMenuStatus) {
         if (status === "published" && !canPublish) {
-            setMessage("Add a featured meal, at least one menu item, price, and deadline before publishing.");
+            setMessage(
+                "Add a featured meal, at least one menu item, price, and deadline before publishing.",
+            );
             return;
         }
 
@@ -113,6 +163,8 @@ export default function AdminWeeklyMenuPage() {
                 ...current,
                 status,
             }));
+
+            await reloadWeeklyMenus();
 
             setMessage(
                 status === "published"
@@ -131,7 +183,7 @@ export default function AdminWeeklyMenuPage() {
     return (
         <section className="text-(--color-text)">
             <header className="mb-8 border-b border-(--color-border) pb-6">
-                <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent)">
+                <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent-soft)">
                     Weekly Menu
                 </p>
 
@@ -140,9 +192,16 @@ export default function AdminWeeklyMenuPage() {
                 </h1>
 
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-(--color-text-muted)">
-                    Create the weekly menu board customers will see on the public website.
+                    Create weekly menu boards, resume drafts, and publish menus for the
+                    public website.
                 </p>
             </header>
+
+            {weeklyMenusError && (
+                <p className="mb-6 rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                    {weeklyMenusError}
+                </p>
+            )}
 
             {mealItemsError && (
                 <p className="mb-6 rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
@@ -156,6 +215,26 @@ export default function AdminWeeklyMenuPage() {
                 </p>
             )}
 
+            <div className="mb-8 grid gap-6 lg:grid-cols-2">
+                <MenuListPanel
+                    title="Draft Menus"
+                    description="Resume saved drafts and publish them when ready."
+                    menus={draftMenus}
+                    emptyMessage="No draft menus yet."
+                    loading={loadingWeeklyMenus}
+                    onEdit={loadMenuIntoForm}
+                />
+
+                <MenuListPanel
+                    title="Published Menus"
+                    description="Published menus are available for the public website."
+                    menus={publishedMenus}
+                    emptyMessage="No published menus yet."
+                    loading={loadingWeeklyMenus}
+                    onEdit={loadMenuIntoForm}
+                />
+            </div>
+
             <div className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr]">
                 <div className="space-y-6">
                     <section className="rounded-3xl border border-(--color-border) bg-(--color-surface) p-5">
@@ -164,6 +243,7 @@ export default function AdminWeeklyMenuPage() {
                         <div className="mt-5 grid gap-4">
                             <label className="grid gap-2 text-sm">
                                 <span className="font-medium">Select Week</span>
+
                                 <select
                                     value={formData.weekStartDate}
                                     onChange={(event) =>
@@ -174,12 +254,19 @@ export default function AdminWeeklyMenuPage() {
                                     }
                                     className="rounded-2xl border border-(--color-border) bg-(--color-background) px-4 py-3 outline-none focus:border-(--color-accent)"
                                 >
-                                    {weekOptions.map((option) => (
+                                    {availableWeekOptions.map((option) => (
                                         <option key={option.value} value={option.value}>
                                             {option.label}
                                         </option>
                                     ))}
                                 </select>
+
+                                {availableWeekOptions.length === 0 && (
+                                    <span className="text-xs text-(--color-text-muted)">
+                                        All upcoming weeks already have menus. Resume/edit an
+                                        existing draft or published menu above.
+                                    </span>
+                                )}
                             </label>
 
                             <label className="grid gap-2 text-sm">
@@ -279,7 +366,8 @@ export default function AdminWeeklyMenuPage() {
                     <h2 className="text-xl font-semibold">Select Meals</h2>
 
                     <p className="mt-2 text-sm leading-6 text-(--color-text-muted)">
-                        Choose one featured item and select the meals that should appear on this week’s menu.
+                        Choose one featured item and select the meals that should appear on
+                        this week’s menu.
                     </p>
 
                     {loadingMealItems ? (
@@ -369,7 +457,7 @@ export default function AdminWeeklyMenuPage() {
                     <button
                         type="button"
                         onClick={() => void handleSave("draft")}
-                        disabled={saving}
+                        disabled={saving || !formData.weekStartDate}
                         className="rounded-full border border-(--color-border) px-5 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted) disabled:opacity-60"
                     >
                         {saving ? "Saving..." : "Save Draft"}
@@ -385,6 +473,74 @@ export default function AdminWeeklyMenuPage() {
                     </button>
                 </div>
             </div>
+        </section>
+    );
+}
+
+type MenuListPanelProps = {
+    title: string;
+    description: string;
+    menus: WeeklyMenu[];
+    emptyMessage: string;
+    loading: boolean;
+    onEdit: (menu: WeeklyMenu) => void;
+};
+
+function MenuListPanel({
+    title,
+    description,
+    menus,
+    emptyMessage,
+    loading,
+    onEdit,
+}: MenuListPanelProps) {
+    return (
+        <section className="rounded-3xl border border-(--color-border) bg-(--color-surface) p-5">
+            <h2 className="text-xl font-semibold">{title}</h2>
+
+            <p className="mt-2 text-sm leading-6 text-(--color-text-muted)">
+                {description}
+            </p>
+
+            {loading ? (
+                <p className="mt-5 text-sm text-(--color-text-muted)">Loading...</p>
+            ) : menus.length === 0 ? (
+                <p className="mt-5 rounded-2xl border border-(--color-border) bg-(--color-background) p-4 text-sm text-(--color-text-muted)">
+                    {emptyMessage}
+                </p>
+            ) : (
+                <div className="mt-5 grid gap-3">
+                    {menus.map((menu) => (
+                        <article
+                            key={menu.id}
+                            className="rounded-2xl border border-(--color-border) bg-(--color-background) p-4"
+                        >
+                            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                <div>
+                                    <p className="font-semibold">Week of {menu.weekStartDate}</p>
+
+                                    <p className="mt-1 text-xs uppercase tracking-[0.2em] text-(--color-accent-soft)">
+                                        {getMenuTimingStatus(menu.weekStartDate)}
+                                    </p>
+
+                                    <p className="mt-2 text-sm text-(--color-text-muted)">
+                                        {menu.mealIds.length} menu item
+                                        {menu.mealIds.length === 1 ? "" : "s"}
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={() => onEdit(menu)}
+                                    className="rounded-full border border-(--color-border) px-4 py-2 text-sm text-(--color-text) transition hover:bg-(--color-surface-muted)"
+                                >
+                                    Resume/Edit
+                                </button>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

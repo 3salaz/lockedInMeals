@@ -65,7 +65,7 @@ export default function DashboardSidebar() {
                             [
                                 "block rounded-xl px-4 py-3 text-sm transition",
                                 isActive
-                                    ? "bg-(--color-accent) text-(--color-background)"
+                                    ? "bg-(--color-accent) text-(--color-main)"
                                     : "text-(--color-text-muted) hover:bg-(--color-surface) hover:text-(--color-text)",
                             ].join(" ")
                         }
