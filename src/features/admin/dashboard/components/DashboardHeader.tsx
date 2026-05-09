@@ -2,7 +2,7 @@ export default function DashboardHeader() {
     return (
         <header className="mb-8 flex flex-col gap-4 border-b border-(--color-border) pb-6 md:flex-row md:items-end md:justify-between">
             <div>
-                <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent)">
+                <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent-soft)">
                     Admin Dashboard
                 </p>
 

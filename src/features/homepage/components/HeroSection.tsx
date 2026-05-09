@@ -102,7 +102,7 @@ export default function HeroSection({
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-4 text-[11px] font-medium uppercase tracking-[0.34em] text-(--color-accent)"
+                    className="mb-4 text-[11px] font-medium uppercase tracking-[0.34em] text-(--color-accent-soft)"
                 >
                     {hero.eyebrow}
                 </motion.p>
@@ -142,7 +142,7 @@ export default function HeroSection({
                 >
                     <a
                         href={hero.primaryCtaHref}
-                        className="inline-flex min-h-12 items-center justify-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-background) transition hover:scale-[1.02]"
+                        className="inline-flex min-h-12 items-center justify-center rounded-full bg-(--color-accent-soft) px-6 py-3 text-sm font-semibold text-(--color-background) transition hover:scale-[1.02]"
                     >
                         {hero.primaryCtaLabel}
                     </a>

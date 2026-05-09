@@ -13,7 +13,7 @@ export default function DashboardCard({
         <div className="rounded-3xl border border-(--color-border) bg-(--color-surface) p-6">
             <p className="text-sm text-(--color-text-muted)">{title}</p>
 
-            <p className="mt-4 text-3xl font-semibold text-(--color-accent)">
+            <p className="mt-4 text-3xl font-semibold text-(--color-accent-soft)">
                 {value}
             </p>
 
