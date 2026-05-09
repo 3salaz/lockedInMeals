@@ -8,7 +8,6 @@ import Hero from "../components/Hero";
 import { useHomepageContent } from "@/features/homepage/hooks/useHomepageContent";
 import FeaturedStorySection from "../components/FeaturedStorySection";
 import HomepageLoader from "@/components/layout/HomepageLoader";
-import FeatureCardsSection from "../components/FeatureCardsSection";
 import ContactSection from "../components/ContactSection";
 import WeeklyMenuSection from "@/features/weeklyMenu/components/WeeklyMenuSection";
 
@@ -39,7 +38,7 @@ export default function HomePage() {
             <Hero />
             <FeaturedStorySection content={homepageContent.featureStory} />
             {/* <FeatureCardsSection content={homepageContent.featureCards} /> */}
-            <WeeklyMenuSection snap={false}/>
+            <WeeklyMenuSection snap/>
             {/* <FeatureCardsSection content={homepageContent.communityCards} /> */}
             {/* <FeatureCardsSection content={homepageContent.businessCards} /> */}
             {/* <Partners /> */}

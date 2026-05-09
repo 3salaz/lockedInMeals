@@ -84,7 +84,7 @@ export default function ContactSection({
                             "linear-gradient(135deg, color-mix(in srgb, var(--color-accent) 20%, transparent), color-mix(in srgb, var(--color-surface) 92%, transparent), transparent)",
                     }}
                 >
-                    <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.28em] text-(--color-accent) sm:mb-4 sm:text-xs">
+                    <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.28em] text-(--color-accent-soft) sm:mb-4 sm:text-xs">
                         {content.eyebrow}
                     </p>
 
@@ -120,7 +120,7 @@ export default function ContactSection({
                             whileTap={{ scale: 0.96 }}
                             whileHover={{ scale: signupStatus === "loading" ? 1 : 1.02 }}
                             transition={{ type: "spring", stiffness: 420, damping: 18 }}
-                            className="inline-flex min-h-12 items-center justify-center rounded-full bg-(--color-accent) px-6 py-3 text-sm font-semibold text-(--color-background) shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition disabled:cursor-not-allowed disabled:opacity-70"
+                            className="inline-flex min-h-12 items-center justify-center rounded-full bg-(--color-accent-soft) px-6 py-3 text-sm font-semibold text-(--color-background) shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition disabled:cursor-not-allowed disabled:opacity-70"
                         >
                             {signupStatus === "loading"
                                 ? content.submittingLabel
@@ -152,7 +152,7 @@ export default function ContactSection({
                                 whileTap={{ scale: 0.96 }}
                                 whileHover={{ scale: 1.02 }}
                                 transition={{ type: "spring", stiffness: 420, damping: 18 }}
-                                className="inline-flex min-h-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) px-6 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted)"
+                                className="inline-flex min-h-12 items-center justify-center rounded-full underline px-6 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted)"
                             >
                                 {content.secondaryCtaLabel}
                             </motion.a>

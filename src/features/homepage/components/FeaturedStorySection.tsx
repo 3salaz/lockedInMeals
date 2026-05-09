@@ -64,7 +64,7 @@ export default function FeaturedStorySection({
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     className="order-2 lg:order-1"
                 >
-                    <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.32em] text-(--color-accent) sm:text-xs">
+                    <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.32em] text-(--color-accent-soft) sm:text-xs">
                         {content.eyebrow}
                     </p>
 
@@ -73,7 +73,7 @@ export default function FeaturedStorySection({
                     </h2>
 
                     <div className="relative mt-5 max-h-34 max-w-2xl overflow-hidden sm:max-h-48">
-                        <div className="space-y-4 text-sm leading-7 text-(--color-text-muted) sm:text-base sm:leading-8">
+                        <div className="space-y-4 text-sm leading-7 text-(--color-text-muted) bg-(--color-background) sm:text-base sm:leading-8 p-2 rounded-lg">
                             {content.body.map((paragraph) => (
                                 <p key={paragraph}>{paragraph}</p>
                             ))}
@@ -138,7 +138,7 @@ export default function FeaturedStorySection({
                                     }}
                                 >
                                     {content.imageBadgeEyebrow && (
-                                        <p className="text-[10px] uppercase tracking-[0.28em] text-(--color-accent) sm:text-[11px]">
+                                        <p className="text-[10px] uppercase tracking-[0.28em] text-(--color-accent-soft) sm:text-[11px]">
                                             {content.imageBadgeEyebrow}
                                         </p>
                                     )}
