@@ -10,11 +10,11 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "seed:homepage": "tsx --env-file=.env scripts/seedHomepageContent.ts",
-    "deploy": "npm run typecheck && npm run build && firebase deploy",
-    "deploy:hosting": "npm run typecheck && npm run build && firebase deploy --only hosting",
-    "deploy:rules": "firebase deploy --only firestore:rules",
-    "deploy:storage": "firebase deploy --only storage",
-    "deploy:all": "npm run typecheck && npm run build && firebase deploy --only hosting,firestore:rules,storage"
+    "deploy": "npm run typecheck && npm run build && npx firebase deploy",
+    "deploy:hosting": "npm run typecheck && npm run build && npx firebase deploy --only hosting",
+    "deploy:rules": "npx firebase deploy --only firestore:rules",
+    "deploy:storage": "npx firebase deploy --only storage",
+    "deploy:all": "npm run typecheck && npm run build && npx firebase deploy --only hosting,firestore:rules,storage"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
@@ -37,6 +37,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "firebase-admin": "^13.8.0",
+    "firebase-tools": "^15.17.0",
     "globals": "^17.4.0",
     "tsx": "^4.21.0",
     "typescript": "~6.0.2",

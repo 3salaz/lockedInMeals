@@ -63,10 +63,10 @@ export default function WeeklyMenuSection({ snap = true }: WeeklyMenuSectionProp
 
   const selectedMeal = mealItems.find((meal) => meal.id === selectedMealId);
 
-  const menuMeals =
-    publishedWeeklyMenu?.mealIds
-      .map((mealId) => mealItems.find((meal) => meal.id === mealId))
-      .filter(Boolean) ?? [];
+  const menuMeals: MealItem[] =
+  publishedWeeklyMenu?.mealIds
+    .map((mealId) => mealItems.find((meal) => meal.id === mealId))
+    .filter((meal): meal is MealItem => Boolean(meal)) ?? [];
 
   if (loading) {
     return (
