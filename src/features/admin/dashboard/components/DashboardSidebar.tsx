@@ -47,10 +47,6 @@ export default function DashboardSidebar() {
     const navContent = (
         <>
             <div className="mb-10">
-                <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent-soft)">
-                    {clientConfig.brandName || "Client" }
-                </p>
-
                 <h2 className="mt-3 text-xl font-semibold text-(--color-text)">
                     Admin
                 </h2>
@@ -91,9 +87,9 @@ export default function DashboardSidebar() {
             <header className="sticky top-0 z-40 flex items-center justify-between border-b border-(--color-border) bg-(--color-background) px-5 py-4 backdrop-blur lg:hidden">
                 <div>
                     <p className="text-[10px] uppercase tracking-[0.3em] text-(--color-accent-soft)">
-                        {clientConfig.brandName || "Client" }
-                    </p>
+                        {clientConfig.brandName || "Client"}
 
+                    </p>.
                     <p className="mt-1 text-sm font-medium text-(--color-text)">
                         Admin
                     </p>
@@ -106,40 +102,42 @@ export default function DashboardSidebar() {
                 >
                     Menu
                 </button>
-            </header>
+            </header >
 
             <aside className="hidden border-r border-(--color-border) bg-(--color-surface) p-6 lg:block">
                 {navContent}
             </aside>
 
-            {isMobileMenuOpen && (
-                <div className="fixed inset-0 z-50 lg:hidden">
-                    <button
-                        type="button"
-                        aria-label="Close menu overlay"
-                        onClick={closeMobileMenu}
-                        className="absolute inset-0 bg-black/70"
-                    />
+            {
+                isMobileMenuOpen && (
+                    <div className="fixed inset-0 z-50 lg:hidden">
+                        <button
+                            type="button"
+                            aria-label="Close menu overlay"
+                            onClick={closeMobileMenu}
+                            className="absolute inset-0 bg-black/70"
+                        />
 
-                    <aside className="relative z-10 h-full w-[82vw] max-w-sm border-r border-(--color-border) bg-(--color-background) p-6 text-(--color-text) shadow-2xl">
-                        <div className="mb-6 flex items-center justify-between">
-                            <p className="text-sm font-medium text-(--color-text)">
-                                Menu
-                            </p>
+                        <aside className="relative z-10 h-full w-[82vw] max-w-sm border-r border-(--color-border) bg-(--color-background) p-6 text-(--color-text) shadow-2xl">
+                            <div className="mb-6 flex items-center justify-between">
+                                <p className="text-sm font-medium text-(--color-text)">
+                                    Menu
+                                </p>
 
-                            <button
-                                type="button"
-                                onClick={closeMobileMenu}
-                                className="rounded-xl border border-(--color-border) px-3 py-2 text-sm text-(--color-text-muted)"
-                            >
-                                Close
-                            </button>
-                        </div>
+                                <button
+                                    type="button"
+                                    onClick={closeMobileMenu}
+                                    className="rounded-xl border border-(--color-border) px-3 py-2 text-sm text-(--color-text-muted)"
+                                >
+                                    Close
+                                </button>
+                            </div>
 
-                        {navContent}
-                    </aside>
-                </div>
-            )}
+                            {navContent}
+                        </aside>
+                    </div>
+                )
+            }
         </>
     );
 }

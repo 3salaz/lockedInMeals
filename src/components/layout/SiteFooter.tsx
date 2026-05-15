@@ -8,7 +8,7 @@ export default function SiteFooter() {
             }}
         >
             <div className="max-w-300 mx-auto my-0">
-                <p className="m-0">© 2026 The Wine Chapel. All rights reserved.</p>
+                <p className="m-0">© 2026 {import.meta.env.VITE_CLIENT_NAME}. All rights reserved.</p>
             </div>
         </footer>
     );

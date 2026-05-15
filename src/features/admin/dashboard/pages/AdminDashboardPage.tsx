@@ -1,6 +1,8 @@
 import DashboardCard from "../components/DashboardCard";
 import DashboardHeader from "../components/DashboardHeader";
 
+import { clientConfig } from "@/config/clientConfig";
+
 export default function AdminDashboardPage() {
     return (
         <section className="text-(--color-text)">
@@ -8,27 +10,37 @@ export default function AdminDashboardPage() {
 
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                 <DashboardCard
-                    title="Homepage"
+                    title="Website"
                     value="Live"
-                    description="Public-facing brand site currently deployed."
+                    description={clientConfig.domain || "yourwebsite.com"}
+                    href={`https://${clientConfig.domain}`}
+                    actionLabel="Visit Site"
+                    status="success"
                 />
 
                 <DashboardCard
-                    title="CMS"
-                    value="Pending"
-                    description="Content editing tools will be added in the next phase."
+                    title="Current Plan"
+                    value="Growth"
+                    description="CMS, Weekly Menu, Theme Management"
+                    status="draft"
                 />
 
                 <DashboardCard
-                    title="Experiences"
-                    value="Draft"
-                    description="Wine tastings, private events, and curated services."
+                    title="Weekly Menu"
+                    value="Published"
+                    description="12 meals currently active"
+                    href="/admin/weekly-menu"
+                    actionLabel="Manage Menu"
+                    status="success"
                 />
 
                 <DashboardCard
-                    title="Partners"
-                    value="Draft"
-                    description="Future partner and collaboration management."
+                    title="Homepage CMS"
+                    value="Ready"
+                    description="Edit homepage sections, images, and content"
+                    href="/admin/pages/home"
+                    actionLabel="Edit Homepage"
+                    status="warning"
                 />
             </div>
 
@@ -45,5 +57,6 @@ export default function AdminDashboardPage() {
                 </div>
             </div>
         </section>
+
     );
 }

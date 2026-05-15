@@ -1,5 +1,5 @@
 /**
- * Approved admin emails for The Wine Chapel dashboard.
+ * Approved admin emails for the  dashboard.
  *
  * Only these emails can access protected admin routes after Google login.
  *

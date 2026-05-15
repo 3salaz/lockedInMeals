@@ -21,7 +21,7 @@ export default function ThemePreviewCard({ theme }: ThemePreviewCardProps) {
                 Live Preview
             </p>
 
-            <h3 className="mt-4 text-3xl font-semibold">The Wine Chapel</h3>
+            <h3 className="mt-4 text-3xl font-semibold">{import.meta.env.VITE_CLIENT_NAME}</h3>
 
             <p
                 className="mt-4 max-w-md text-sm leading-6"
