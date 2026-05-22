@@ -9,6 +9,11 @@ export default function App() {
 
   useEffect(() => {
     applyThemeToDocument(theme);
+
+    localStorage.setItem(
+      "site-theme",
+      JSON.stringify(theme),
+    );
   }, [theme]);
 
   return <AppRoutes />;

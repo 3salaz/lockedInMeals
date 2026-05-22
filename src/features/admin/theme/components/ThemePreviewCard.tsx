@@ -16,7 +16,7 @@ export default function ThemePreviewCard({ theme }: ThemePreviewCardProps) {
         >
             <p
                 className="text-xs uppercase tracking-[0.35em]"
-                style={{ color: theme.colors.accent }}
+                style={{ color: theme.colors.accentSoft }}
             >
                 Live Preview
             </p>
@@ -48,7 +48,7 @@ export default function ThemePreviewCard({ theme }: ThemePreviewCardProps) {
                     type="button"
                     className="mt-5 rounded-xl px-4 py-2 text-sm font-medium"
                     style={{
-                        background: theme.colors.accent,
+                        background: theme.colors.accentSoft,
                         color: theme.colors.background,
                     }}
                 >

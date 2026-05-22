@@ -37,11 +37,7 @@ export default function HomePage() {
             />
             <Hero />
             <FeaturedStorySection content={homepageContent.featureStory} />
-            {/* <FeatureCardsSection content={homepageContent.featureCards} /> */}
-            <WeeklyMenuSection snap/>
-            {/* <FeatureCardsSection content={homepageContent.communityCards} /> */}
-            {/* <FeatureCardsSection content={homepageContent.businessCards} /> */}
-            {/* <Partners /> */}
+            <WeeklyMenuSection snap />
             <ContactSection content={homepageContent.contact} />
         </main>
     );

@@ -64,9 +64,9 @@ export default function WeeklyMenuSection({ snap = true }: WeeklyMenuSectionProp
   const selectedMeal = mealItems.find((meal) => meal.id === selectedMealId);
 
   const menuMeals: MealItem[] =
-  publishedWeeklyMenu?.mealIds
-    .map((mealId) => mealItems.find((meal) => meal.id === mealId))
-    .filter((meal): meal is MealItem => Boolean(meal)) ?? [];
+    publishedWeeklyMenu?.mealIds
+      .map((mealId) => mealItems.find((meal) => meal.id === mealId))
+      .filter((meal): meal is MealItem => Boolean(meal)) ?? [];
 
   if (loading) {
     return (
@@ -255,7 +255,7 @@ export default function WeeklyMenuSection({ snap = true }: WeeklyMenuSectionProp
             >
               {viewMode === "featured" ? "View Full Menu" : "View Featured Meal"}
             </button>
-                        <button
+            <button
               type="button"
               onClick={() => setInfoOpen((current) => !current)}
               className="rounded-full border border-(--color-border) bg-(--color-background) px-4 py-3 text-xs font-semibold text-(--color-text) transition hover:bg-(--color-surface-muted)"
@@ -276,7 +276,7 @@ export default function WeeklyMenuSection({ snap = true }: WeeklyMenuSectionProp
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[70] bg-black/75 backdrop-blur-sm"
+              className="fixed inset-0 z-70 bg-black/75 backdrop-blur-sm"
             />
 
             <motion.div
@@ -286,7 +286,7 @@ export default function WeeklyMenuSection({ snap = true }: WeeklyMenuSectionProp
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="fixed inset-x-4 top-6 z-[80] mx-auto max-h-[calc(100svh-3rem)] max-w-lg overflow-y-auto rounded-4xl border border-(--color-border) bg-(--color-surface) text-(--color-text) shadow-2xl"
+              className="fixed inset-x-4 top-6 z-80 mx-auto max-h-[calc(100svh-3rem)] max-w-lg overflow-y-auto rounded-4xl border border-(--color-border) bg-(--color-surface) text-(--color-text) shadow-2xl"
             >
               {selectedMeal.imageUrl && (
                 <img
@@ -353,7 +353,7 @@ function FeaturedMealCard({ meal, onClick }: MealCardProps) {
       whileInView={{ y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="w-full overflow-hidden rounded-4xl border border-(--color-border) bg-(--color-surface) text-left shadow-[0_20px_80px_rgba(0,0,0,0.2)]"
+      className="w-full overflow-hidden rounded-4xl border border-(--color-border) bg-(--color-surface) text-left shadow-[0_20px_80px_rgba(0,0,0,0.2)] max-w-sm"
     >
       <div className="relative">
         {meal.imageUrl ? (

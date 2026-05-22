@@ -14,8 +14,8 @@ const navItems = [
         path: "/admin/theme",
     },
     {
-        label: "Homepage",
-        path: "/admin/pages/home",
+        label: "CMS",
+        path: "/admin/cms/home",
     },
     {
         label: "Meal Inventory",
@@ -62,7 +62,7 @@ export default function DashboardSidebar() {
                             [
                                 "block rounded-xl px-4 py-3 text-sm transition",
                                 isActive
-                                    ? "bg-(--color-accent) text-(--color-main)"
+                                    ? "bg-(--color-accent-soft) text-(--color-surface)"
                                     : "text-(--color-text-muted) hover:bg-(--color-surface) hover:text-(--color-text)",
                             ].join(" ")
                         }
@@ -89,7 +89,7 @@ export default function DashboardSidebar() {
                     <p className="text-[10px] uppercase tracking-[0.3em] text-(--color-accent-soft)">
                         {clientConfig.brandName || "Client"}
 
-                    </p>.
+                    </p>
                     <p className="mt-1 text-sm font-medium text-(--color-text)">
                         Admin
                     </p>

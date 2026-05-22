@@ -156,7 +156,7 @@ export default function HeroSection({
                 </motion.div>
             </div>
 
-            {showHighlights && heroHighlights.length > 0 && (
+            {/* {showHighlights && heroHighlights.length > 0 && (
                 <motion.div
                     initial={{ opacity: 0, y: 22 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -172,7 +172,20 @@ export default function HeroSection({
                         </div>
                     ))}
                 </motion.div>
+            )} */}
+
+            {showHighlights && heroHighlights.length > 0 && (
+                <motion.div
+                    initial={{ opacity: 0, y: 22 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.75, delay: 0.32 }}
+                    className="hidden max-w-lg rounded-md gap-3 sm:flex"
+                >
+                    <img className="object-fill rounded-lg" src="/src/assets/images/logo.JPG"></img>
+                </motion.div>
             )}
+
+
         </SectionFrame>
     );
 }

@@ -124,7 +124,7 @@ export default function SiteNav({
                                 <button
                                     type="button"
                                     onClick={() => scrollToSection(ctaHref)}
-                                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-(--color-accent) px-5 text-sm font-semibold text-(--color-background) transition hover:scale-[1.02]"
+                                    className="inline-flex min-h-11 items-center justify-center rounded-full bg-(--color-accent-soft) px-5 text-sm font-semibold text-(--color-background) transition hover:scale-[1.02]"
                                 >
                                     {ctaLabel}
                                 </button>

@@ -1,21 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #0a0a0a;
-  --color-surface: #141414;
-  --color-surface-muted: #1e1e1e;
-  --color-text: #f8f6f2;
-  --color-text-muted: #b8b2a7;
-  --color-accent: #d8c3a5;
-  --color-accent-soft: #b85c38;
-  --color-border: rgba(255, 255, 255, 0.12);
+  --color-background: #f7f8f4;
+  --color-surface: #ffffff;
+  --color-surface-muted: #e9eee4;
+  --color-text: #101510;
+  --color-text-muted: #5f665e;
+  --color-accent: #6bff2a;
+  --color-accent-soft: #1f7a1f;
+  --color-border: rgba(16, 21, 16, 0.14);
 }
 
-body {
+html,
+body,
+#root {
   background: var(--color-background);
   color: var(--color-text);
-}
-
-html {
-  scroll-behavior: smooth;
+  min-height: 100%;
 }

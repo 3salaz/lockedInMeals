@@ -3,6 +3,16 @@ import type { HomepageContent } from "../../src/features/homepage/types/homepage
 export const lockedInMealsHomepageContent: HomepageContent = {
     id: "homepage",
 
+    settings: {
+        snapScroll: true,
+
+        parallax: {
+            enabled: true,
+            imageUrl: "",
+            opacity: 0.2,
+        },
+    },
+
     nav: {
         brandLabel: "Locked In Meals",
         links: [
@@ -22,7 +32,7 @@ export const lockedInMealsHomepageContent: HomepageContent = {
         primaryCtaHref: "#services",
         secondaryCtaLabel: "How It Works",
         secondaryCtaHref: "#about",
-        heroImageUrl: "/src/assets/hero.png",
+        heroImageUrl: "/src/assets/hero1.png",
         highlights: [
             "Fresh meal prep",
             "Ready-to-eat",
@@ -40,12 +50,12 @@ export const lockedInMealsHomepageContent: HomepageContent = {
             "The goal is simple: make eating well easier, more reliable, and less stressful.",
         ],
         buttonLabel: "Read More",
-        imageUrl: "/src/assets/hero.png",
+        imageUrl: "/src/assets/hero1.png",
         imageAlt: "Prepared meal containers",
         imageBadgeEyebrow: "Built For Routine",
         imageBadgeBody:
             "Fresh meals designed to support clean eating and consistent habits.",
-        modalEyebrow: "Our Approach",
+        modalEyebrow: "Our Story",
         modalHeading: "Fresh meals that help you stay locked in.",
         modalBody: [
             "Locked In Meals was created for people who want structure without spending their whole week cooking.",

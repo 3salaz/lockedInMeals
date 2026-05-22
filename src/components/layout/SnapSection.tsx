@@ -43,7 +43,7 @@ export default function SnapSection({
             {background}
 
             {withDivider && (
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent" />
+                <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-(--color-border) to-transparent" />
             )}
 
             <div

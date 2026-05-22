@@ -147,7 +147,7 @@ export default function AdminThemePage() {
     if (loadingTheme) {
         return (
             <section className="text-(--color-text)">
-                <p className="text-sm uppercase tracking-[0.35em] text-(--color-accent)">
+                <p className="text-sm uppercase tracking-[0.35em] text-(--color-accent-soft)">
                     Loading Theme
                 </p>
             </section>
@@ -159,7 +159,7 @@ export default function AdminThemePage() {
             <header className="mb-8 border-b border-(--color-border) pb-6">
                 <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                     <div>
-                        <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent)">
+                        <p className="text-xs uppercase tracking-[0.35em] text-(--color-accent-soft)">
                             Website Theme
                         </p>
 
@@ -284,7 +284,7 @@ export default function AdminThemePage() {
                                 type="button"
                                 onClick={handleSaveTheme}
                                 disabled={savingTheme || !hasUnsavedChanges || hasInvalidColors}
-                                className="rounded-xl bg-(--preview-color-accent) px-5 py-3 text-sm font-medium text-(--preview-color-background) transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                                className="rounded-xl bg-(--preview-color-accent-soft) px-5 py-3 text-sm font-medium text-(--preview-color-background) transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                             >
                                 {savingTheme ? "Saving..." : "Save Theme"}
                             </button>

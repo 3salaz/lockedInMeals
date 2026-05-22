@@ -1,5 +1,5 @@
-import defaultHeroImage from "@/assets/hero.png";
-import defaultFeaturedStoryImage from "@/assets/hero.png";
+import defaultHeroImage from "@/assets/hero1.png";
+import defaultFeaturedStoryImage from "@/assets/hero1.png";
 
 import type { HomepageContent } from "../types/homepageContent.types";
 
@@ -15,6 +15,16 @@ export const defaultHomepageContent: HomepageContent = {
         ],
         ctaLabel: "Get Started",
         ctaHref: "#contact",
+    },
+
+    settings: {
+        snapScroll: true,
+
+        parallax: {
+            enabled: true,
+            imageUrl: "",
+            opacity: 0.2,
+        },
     },
 
     hero: {
@@ -80,6 +90,7 @@ export const defaultHomepageContent: HomepageContent = {
             },
         ],
     },
+
     communityCards: {
         id: "community",
         eyebrow: "Get Connected",
@@ -111,6 +122,7 @@ export const defaultHomepageContent: HomepageContent = {
             },
         ],
     },
+
     businessCards: {
         id: "who-its-for",
         eyebrow: "Who It’s For",

@@ -139,15 +139,15 @@ export default function HeroSectionEditor({
     }
 
     const inputClassName =
-        "block w-full min-w-0 max-w-full rounded-xl border border-(--color-border) bg-(--color-surface-muted) px-4 py-3 text-sm text-(--color-text) outline-none focus:border-(--color-accent)";
+        "block w-full min-w-0 max-w-full rounded-xl border border-(--color-border) bg-(--color-surface-muted) px-4 py-3 text-sm text-(--color-text) outline-none focus:border-(--color-accent-soft)";
 
     const textareaClassName =
-        "block w-full min-w-0 max-w-full resize-none rounded-xl border border-(--color-border) bg-(--color-surface-muted) px-4 py-3 text-sm text-(--color-text) outline-none focus:border-(--color-accent)";
+        "block w-full min-w-0 max-w-full resize-none rounded-xl border border-(--color-border) bg-(--color-surface-muted) px-4 py-3 text-sm text-(--color-text) outline-none focus:border-(--color-accent-soft)";
 
     return (
         <div className="w-full min-w-0 overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface) p-4 sm:p-6">
             <div className="min-w-0 max-w-xl">
-                <p className="text-xs uppercase tracking-[0.3em] text-(--color-accent)">
+                <p className="text-xs uppercase tracking-[0.3em] text-(--color-accent-soft)">
                     Homepage Section
                 </p>
 
@@ -334,7 +334,7 @@ export default function HeroSectionEditor({
                 <div className="min-w-0 xl:sticky xl:top-8">
                     <div className="mb-4 flex min-w-0 flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                         <div className="min-w-0">
-                            <p className="text-xs uppercase tracking-[0.3em] text-(--color-accent)">
+                            <p className="text-xs uppercase tracking-[0.3em] text-(--color-accent-soft)">
                                 Live Section Preview
                             </p>
 
@@ -356,7 +356,7 @@ export default function HeroSectionEditor({
                                             className={[
                                                 "rounded-full border px-3 py-2 text-xs font-medium transition",
                                                 isActive
-                                                    ? "border-(--color-accent) bg-(--color-accent) text-(--color-background)"
+                                                    ? "border-(--color-accent-soft) bg-(--color-accent-soft) text-(--color-background)"
                                                     : "border-(--color-border) bg-(--color-surface-muted) text-(--color-text-muted) hover:text-(--color-text)",
                                             ].join(" ")}
                                         >

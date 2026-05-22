@@ -17,7 +17,7 @@ export default function ThemePresetSelector({
     return (
         <div className="rounded-3xl border border-(--preview-color-border,var(--color-border)) bg-(--preview-color-surface,var(--color-surface)) p-6 text-(--preview-color-text,var(--color-text))">
             <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-(--preview-color-accent,var(--color-accent))">
+                <p className="text-xs uppercase tracking-[0.3em] text-(--color-accent-soft) font-bold">
                     Presets
                 </p>
 

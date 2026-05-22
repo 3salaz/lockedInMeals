@@ -88,6 +88,14 @@ export type ContactSectionContent = {
 export type HomepageContent = {
     id: "homepage";
     nav: HomepageNavContent;
+    settings: {
+        snapScroll: boolean;
+        parallax: {
+            imageUrl: string;
+            opacity: number;
+            enabled: boolean;
+        };
+    };
     hero: HomepageHeroContent;
     featureStory: FeatureStoryContent;
     featureCards: FeatureCardsContent;
