@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { motion } from "framer-motion";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 import SectionFrame from "@/components/layout/SectionFrame";
 import { signupForUpdates } from "@/lib/signup";
@@ -54,6 +56,26 @@ export default function ContactSection({
             contentClassName="flex-col items-stretch pt-16 sm:pt-24"
             background={
                 <>
+                    {/* Background image — top 45%, slow drift animation */}
+                    {content.backgroundImageUrl && (
+                        <div className="absolute inset-x-0 top-0 h-[45%] overflow-hidden pointer-events-none">
+                            <motion.div
+                                className="absolute inset-0 rounded-b-4xl bg-cover bg-top"
+                                style={{ backgroundImage: `url(${content.backgroundImageUrl})`, scale: 1.1 }}
+                                animate={{
+                                    x: [0, 18, -12, 8, -18, 0],
+                                    y: [0, -10, 14, -8, 10, 0],
+                                }}
+                                transition={{
+                                    duration: 35,
+                                    ease: "easeInOut",
+                                    repeat: Infinity,
+                                    repeatType: "loop",
+                                }}
+                            />
+                        </div>
+                    )}
+
                     <div
                         className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full blur-3xl"
                         style={{
@@ -145,17 +167,48 @@ export default function ContactSection({
                         </motion.p>
                     )}
 
-                    {content.secondaryCtaLabel && content.secondaryCtaHref && (
-                        <div className="mt-5 flex justify-center">
-                            <motion.a
-                                href={content.secondaryCtaHref}
-                                whileTap={{ scale: 0.96 }}
-                                whileHover={{ scale: 1.02 }}
-                                transition={{ type: "spring", stiffness: 420, damping: 18 }}
-                                className="inline-flex min-h-12 items-center justify-center rounded-full underline px-6 py-3 text-sm font-medium text-(--color-text) transition hover:bg-(--color-surface-muted)"
-                            >
-                                {content.secondaryCtaLabel}
-                            </motion.a>
+                    {content.socialLinks && (
+                        <div className="mt-6 flex items-center justify-center gap-4">
+                            {content.socialLinks.gmail && (
+                                <motion.a
+                                    href={content.socialLinks.gmail}
+                                    aria-label="Email us"
+                                    whileTap={{ scale: 0.92 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ type: "spring", stiffness: 420, damping: 18 }}
+                                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-muted) transition hover:border-(--color-accent-soft) hover:text-(--color-accent-soft)"
+                                >
+                                    <SiGmail size={20} />
+                                </motion.a>
+                            )}
+                            {content.socialLinks.instagram && (
+                                <motion.a
+                                    href={content.socialLinks.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Instagram"
+                                    whileTap={{ scale: 0.92 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ type: "spring", stiffness: 420, damping: 18 }}
+                                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-muted) transition hover:border-(--color-accent-soft) hover:text-(--color-accent-soft)"
+                                >
+                                    <FaInstagram size={20} />
+                                </motion.a>
+                            )}
+                            {content.socialLinks.facebook && (
+                                <motion.a
+                                    href={content.socialLinks.facebook}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label="Facebook"
+                                    whileTap={{ scale: 0.92 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    transition={{ type: "spring", stiffness: 420, damping: 18 }}
+                                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface) text-(--color-text-muted) transition hover:border-(--color-accent-soft) hover:text-(--color-accent-soft)"
+                                >
+                                    <FaFacebook size={20} />
+                                </motion.a>
+                            )}
                         </div>
                     )}
                 </motion.div>

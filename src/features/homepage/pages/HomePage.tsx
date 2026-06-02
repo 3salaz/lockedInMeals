@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 
 import SiteNav from "@/components/layout/SiteNav";
-
-import storyImage from "@/assets/images/bodega-entrance.jpg";
 import Hero from "../components/Hero";
 
 import { useHomepageContent } from "@/features/homepage/hooks/useHomepageContent";
@@ -10,24 +8,28 @@ import FeaturedStorySection from "../components/FeaturedStorySection";
 import HomepageLoader from "@/components/layout/HomepageLoader";
 import ContactSection from "../components/ContactSection";
 import WeeklyMenuSection from "@/features/weeklyMenu/components/WeeklyMenuSection";
+import { usePublishedWeeklyMenu } from "@/features/weeklyMenu/hooks/usePublishedWeeklyMenu";
+import { useMealItems } from "@/features/meals/hooks/useMealItems";
 
 
-export default function HomePage() {
+type HomePageProps = {
+    loadingTheme?: boolean;
+};
+
+export default function HomePage({ loadingTheme = false }: HomePageProps) {
 
     const { homepageContent, loadingHomepageContent } = useHomepageContent();
-    useEffect(() => {
-        const image = new Image();
-        image.src = storyImage;
-    }, []);
+    const publishedMenuState = usePublishedWeeklyMenu();
+    const mealItemsState = useMealItems();
 
-    if (loadingHomepageContent) {
+    if (loadingTheme || loadingHomepageContent) {
         return <HomepageLoader />;
     }
 
     return (
         <main
             id="top"
-            className="h-dvh overflow-y-auto overflow-x-hidden scroll-smooth bg-(--color-background) text-(--color-text) snap-y snap-mandatory"
+            className="h-dvh overflow-y-auto overflow-x-hidden bg-(--color-background) text-(--color-text) snap-y snap-mandatory"
         >
             <SiteNav
                 brandLabel={homepageContent.nav.brandLabel}
@@ -36,8 +38,16 @@ export default function HomePage() {
                 ctaHref={homepageContent.nav.ctaHref}
             />
             <Hero />
+            <WeeklyMenuSection
+                snap
+                publishedWeeklyMenu={publishedMenuState.publishedWeeklyMenu}
+                loadingPublishedWeeklyMenu={publishedMenuState.loadingPublishedWeeklyMenu}
+                publishedWeeklyMenuError={publishedMenuState.publishedWeeklyMenuError}
+                mealItems={mealItemsState.mealItems}
+                loadingMealItems={mealItemsState.loadingMealItems}
+            />
             <FeaturedStorySection content={homepageContent.featureStory} />
-            <WeeklyMenuSection snap />
+
             <ContactSection content={homepageContent.contact} />
         </main>
     );

@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
+/* Fallback defaults — match defaultSiteTheme so there is no flash before
+   the localStorage inline script or Firestore theme kicks in. */
 :root {
-  --color-background: #f7f8f4;
-  --color-surface: #ffffff;
-  --color-surface-muted: #e9eee4;
-  --color-text: #101510;
-  --color-text-muted: #5f665e;
+  --color-background: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-muted: #1e1e1e;
+  --color-text: #ffffff;
+  --color-text-muted: #b8b2a7;
   --color-accent: #6bff2a;
-  --color-accent-soft: #1f7a1f;
-  --color-border: rgba(16, 21, 16, 0.14);
+  --color-accent-soft: #6bff2a;
+  --color-border: rgba(255, 255, 255, 0.12);
 }
 
 html,

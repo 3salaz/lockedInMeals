@@ -3,6 +3,19 @@ import { useHomepageContent } from "@/features/homepage/hooks/useHomepageContent
 
 import MainSectionEditor from "../components/MainSelectionEditor";
 import HeroSectionEditor from "../components/HeroSectionEditor";
+import SiteNavSectionEditor from "../components/SiteNavSectionEditor";
+import FeaturedStorySectionEditor from "../components/FeaturedStorySectionEditor";
+import ContactSectionEditor from "../components/ContactSectionEditor";
+
+const SECTIONS = [
+    { value: "main", label: "Main Settings" },
+    { value: "nav", label: "Site Navigation" },
+    { value: "hero", label: "Hero" },
+    { value: "featureStory", label: "Featured Story" },
+    { value: "contact", label: "Contact" },
+] as const;
+
+type SectionKey = (typeof SECTIONS)[number]["value"];
 
 export default function HomePageEditor() {
     const {
@@ -16,7 +29,7 @@ export default function HomePageEditor() {
 
     const [successMessage, setSuccessMessage] = useState("");
     const [savedSnapshot, setSavedSnapshot] = useState("");
-    const [selectedSection, setSelectedSection] = useState("hero");
+    const [selectedSection, setSelectedSection] = useState<SectionKey>("hero");
 
     const currentSnapshot = useMemo(() => {
         return JSON.stringify(homepageContent);
@@ -47,17 +60,23 @@ export default function HomePageEditor() {
         );
     }
 
-    const sectionEditors: Record<string, React.ReactNode> = {
+    const sectionEditors: Record<SectionKey, React.ReactNode> = {
         main: (
             <MainSectionEditor
                 settings={homepageContent.settings}
                 onChange={(settings) => {
                     setSuccessMessage("");
+                    setHomepageContent({ ...homepageContent, settings });
+                }}
+            />
+        ),
 
-                    setHomepageContent({
-                        ...homepageContent,
-                        settings,
-                    });
+        nav: (
+            <SiteNavSectionEditor
+                nav={homepageContent.nav}
+                onChange={(nav) => {
+                    setSuccessMessage("");
+                    setHomepageContent({ ...homepageContent, nav });
                 }}
             />
         ),
@@ -67,11 +86,27 @@ export default function HomePageEditor() {
                 hero={homepageContent.hero}
                 onChange={(hero) => {
                     setSuccessMessage("");
+                    setHomepageContent({ ...homepageContent, hero });
+                }}
+            />
+        ),
 
-                    setHomepageContent({
-                        ...homepageContent,
-                        hero,
-                    });
+        featureStory: (
+            <FeaturedStorySectionEditor
+                featureStory={homepageContent.featureStory}
+                onChange={(featureStory) => {
+                    setSuccessMessage("");
+                    setHomepageContent({ ...homepageContent, featureStory });
+                }}
+            />
+        ),
+
+        contact: (
+            <ContactSectionEditor
+                contact={homepageContent.contact}
+                onChange={(contact) => {
+                    setSuccessMessage("");
+                    setHomepageContent({ ...homepageContent, contact });
                 }}
             />
         ),
@@ -95,18 +130,17 @@ export default function HomePageEditor() {
                         </p>
 
                         <select
-                            className="bg-(--color-surface) p-1 px-2 rounded-lg border border-(--color-border)"
+                            className="bg-(--color-surface) p-1 px-2 rounded-lg border border-(--color-border) text-sm text-(--color-text)"
                             name="section"
                             id="section-selection"
                             value={selectedSection}
-                            onChange={(e) => setSelectedSection(e.target.value)}
+                            onChange={(e) => setSelectedSection(e.target.value as SectionKey)}
                         >
-                            <option value="main">Main</option>
-                            <option value="siteNav">Site Nav</option>
-                            <option value="hero">Hero</option>
-                            <option value="experiences">FeaturedStory</option>
-                            <option value="wineCrew">Weekly Menu Section</option>
-                            <option value="contact">Contact</option>
+                            {SECTIONS.map((s) => (
+                                <option key={s.value} value={s.value}>
+                                    {s.label}
+                                </option>
+                            ))}
                         </select>
                     </div>
 

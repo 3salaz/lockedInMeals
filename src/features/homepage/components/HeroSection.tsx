@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 
 import SectionFrame from "@/components/layout/SectionFrame";
 import type { HomepageHeroContent } from "@/features/homepage/types/homepageContent.types";
+import mobileHeroImage from "@/assets/mobile-hero.png";
 
 type HeroPreviewMode = "mobile" | "tablet" | "desktop";
 
@@ -56,10 +57,34 @@ export default function HeroSection({
             ].join(" ")}
             background={
                 <>
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{
-                            backgroundImage: `url(${hero.heroImageUrl})`,
+                    {/* Mobile background */}
+                    <motion.div
+                        className="absolute inset-0 bg-cover bg-center sm:hidden"
+                        style={{ backgroundImage: `url(${mobileHeroImage})`, scale: 1.1 }}
+                        animate={compact ? false : {
+                            x: [0, -22, 10, -14, 8, 0],
+                            y: [0, -10, 16, -8, 14, 0],
+                        }}
+                        transition={{
+                            duration: 10,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            repeatType: "loop",
+                        }}
+                    />
+                    {/* Desktop background */}
+                    <motion.div
+                        className="absolute inset-0 hidden bg-cover bg-center sm:block"
+                        style={{ backgroundImage: `url(${hero.heroImageUrl})`, scale: 1.1 }}
+                        animate={compact ? false : {
+                            x: [0, -22, 10, -14, 8, 0],
+                            y: [0, -10, 16, -8, 14, 0],
+                        }}
+                        transition={{
+                            duration: 35,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            repeatType: "loop",
                         }}
                     />
 

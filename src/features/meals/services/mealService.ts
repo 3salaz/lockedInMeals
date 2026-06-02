@@ -1,6 +1,7 @@
 import {
     addDoc,
     collection,
+    deleteDoc,
     doc,
     getDocs,
     orderBy,
@@ -56,4 +57,8 @@ export async function updateMealItem(mealId: string, data: MealItemFormData) {
         ...cleanData,
         updatedAt: serverTimestamp(),
     });
+}
+
+export async function deleteMealItem(mealId: string) {
+    return deleteDoc(doc(db, "mealItems", mealId));
 }

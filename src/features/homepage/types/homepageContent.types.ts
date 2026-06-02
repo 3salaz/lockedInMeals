@@ -80,8 +80,12 @@ export type ContactSectionContent = {
     emailPlaceholder: string;
     submitLabel: string;
     submittingLabel: string;
-    secondaryCtaLabel?: string;
-    secondaryCtaHref?: string;
+    backgroundImageUrl?: string;
+    socialLinks?: {
+        gmail?: string;
+        instagram?: string;
+        facebook?: string;
+    };
     footerText: string;
 };
 

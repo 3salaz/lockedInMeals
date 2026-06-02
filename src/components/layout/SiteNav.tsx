@@ -37,32 +37,18 @@ export default function SiteNav({
     }, [open]);
 
     useEffect(() => {
-        const scrollContainer = document.querySelector("#top");
+        const container = document.getElementById("top");
 
-        if (!scrollContainer) return;
+        // Not on the homepage (e.g. admin) — always show
+        if (!container) {
+            setIsVisible(true);
+            return;
+        }
 
-        let ticking = false;
-
-        const handleScroll = () => {
-            if (ticking) return;
-
-            window.requestAnimationFrame(() => {
-                setIsVisible(scrollContainer.scrollTop < 40);
-                ticking = false;
-            });
-
-            ticking = true;
-        };
-
-        handleScroll();
-
-        scrollContainer.addEventListener("scroll", handleScroll, {
-            passive: true,
-        });
-
-        return () => {
-            scrollContainer.removeEventListener("scroll", handleScroll);
-        };
+        const update = () => setIsVisible(container.scrollTop < 80);
+        update();
+        container.addEventListener("scroll", update, { passive: true });
+        return () => container.removeEventListener("scroll", update);
     }, []);
 
     const closeMenu = () => setOpen(false);
@@ -85,7 +71,7 @@ export default function SiteNav({
         <>
             <header
                 className={[
-                    "fixed inset-x-0 top-0 z-50 transition-transform duration-500 ease-out",
+                    "fixed inset-x-0 top-0 z-50 transition-transform duration-200 ease-out",
                     isVisible || open ? "translate-y-0" : "-translate-y-full",
                 ].join(" ")}
             >

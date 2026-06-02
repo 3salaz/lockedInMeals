@@ -21,7 +21,24 @@ export function useHomepageContent() {
 
         const unsubscribe = subscribeToHomepageContent(
             (content) => {
-                setHomepageContent(content);
+                // Merge with defaults so fields added after the Firestore doc was
+                // first saved (e.g. socialLinks) are populated from defaultHomepageContent.
+                setHomepageContent({
+                    ...defaultHomepageContent,
+                    ...content,
+                    nav: { ...defaultHomepageContent.nav, ...content.nav },
+                    settings: {
+                        ...defaultHomepageContent.settings,
+                        ...content.settings,
+                        parallax: {
+                            ...defaultHomepageContent.settings.parallax,
+                            ...content.settings?.parallax,
+                        },
+                    },
+                    hero: { ...defaultHomepageContent.hero, ...content.hero },
+                    featureStory: { ...defaultHomepageContent.featureStory, ...content.featureStory },
+                    contact: { ...defaultHomepageContent.contact, ...content.contact },
+                });
                 setLoadingHomepageContent(false);
             },
             () => {

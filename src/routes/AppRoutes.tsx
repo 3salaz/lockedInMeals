@@ -2,10 +2,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "@/features/homepage/pages/HomePage";
 import { AdminRoutes } from "@/routes/AdminRoutes";
 
-export default function AppRoutes() {
+type AppRoutesProps = {
+    loadingTheme: boolean;
+};
+
+export default function AppRoutes({ loadingTheme }: AppRoutesProps) {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage loadingTheme={loadingTheme} />} />
 
             {AdminRoutes()}
 

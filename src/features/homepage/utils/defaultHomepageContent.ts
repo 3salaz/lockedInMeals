@@ -1,5 +1,4 @@
 import defaultHeroImage from "@/assets/hero1.png";
-import defaultFeaturedStoryImage from "@/assets/hero1.png";
 
 import type { HomepageContent } from "../types/homepageContent.types";
 
@@ -48,7 +47,7 @@ export const defaultHomepageContent: HomepageContent = {
             "Keep the message clear, specific, and focused on the customer experience.",
         ],
         buttonLabel: "Read More",
-        imageUrl: defaultFeaturedStoryImage,
+        imageUrl: "/src/assets/hero1.png",
         imageAlt: "Business story image",
         imageBadgeEyebrow: "Built With Purpose",
         imageBadgeBody:
@@ -151,8 +150,11 @@ export const defaultHomepageContent: HomepageContent = {
         emailPlaceholder: "Enter your email",
         submitLabel: "Submit",
         submittingLabel: "Submitting...",
-        secondaryCtaLabel: "Contact Us",
-        secondaryCtaHref: "mailto:hello@example.com",
+        socialLinks: {
+            gmail: "mailto:hello@example.com",
+            instagram: "https://www.instagram.com/",
+            facebook: "https://facebook.com/",
+        },
         footerText: "© 2026 Your Brand. All rights reserved.",
     },
 
