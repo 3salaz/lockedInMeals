@@ -36,7 +36,7 @@ export default function SectionFrame({
     const layoutClass =
         variant === "grid"
             ? "grid h-full items-center"
-            : "flex h-full items-center";
+            : "flex h-full items-center ";
 
     return (
         <section
@@ -56,7 +56,7 @@ export default function SectionFrame({
 
             <div
                 className={[
-                    "relative z-10 mx-auto w-full px-5 pb-8 pt-20 sm:px-8 sm:pb-12 sm:pt-24 lg:px-10 xl:px-0",
+                    "relative z-10 mx-auto w-full px-5 sm:px-8 sm:pb-12  lg:px-10 xl:px-0",
                     maxWidthClasses[maxWidth],
                     layoutClass,
                     contentClassName,

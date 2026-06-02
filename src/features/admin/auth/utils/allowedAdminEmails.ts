@@ -13,7 +13,7 @@
  */
 export const allowedAdminEmails = [
     "3salaz.dev@gmail.com",
-    // "your-email@gmail.com",
+    "hatzistratisc@gmail.com",
 ] as const;
 
 /**

@@ -11,6 +11,7 @@ service cloud.firestore {
       return isSignedIn()
         && request.auth.token.email in [
           "3salaz.dev@gmail.com",
+          "hatzistratisc@gmail.com",
         ];
     }
 

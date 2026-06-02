@@ -105,7 +105,7 @@ export default function FeaturedStorySection({
                     whileInView={{ y: 0, scale: 1 }}
                     viewport={{ once: true, amount: 0.35 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="order-1 lg:order-2"
+                    className="order-1 lg:order-2 grow"
                 >
                     <div className="relative overflow-hidden rounded-4xl border border-(--color-border) bg-(--color-surface) shadow-[0_20px_80px_rgba(0,0,0,0.22)]">
                         <img
@@ -165,7 +165,7 @@ export default function FeaturedStorySection({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-70 bg-black/75 backdrop-blur-sm"
+                            className="fixed inset-0 z-70 bg-red-600/75 backdrop-blur-sm"
                         />
 
                         <motion.div
@@ -176,7 +176,7 @@ export default function FeaturedStorySection({
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 24, scale: 0.98 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="fixed inset-x-4 top-6 z-80 mx-auto max-h-[calc(100svh-3rem)] max-w-3xl overflow-y-auto rounded-4xl border border-(--color-border) bg-(--color-surface) p-6 text-(--color-text) shadow-2xl sm:p-8"
+                            className="fixed inset-x-4 top-6 z-80 mx-auto max-h-[calc(100dvh-3rem)] max-w-3xl overflow-y-auto rounded-4xl border border-(--color-border) bg-(--color-surface) p-6 text-(--color-text) shadow-2xl sm:p-8"
                         >
                             <div className="mb-6 flex items-center justify-between gap-4">
                                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-(--color-accent)">

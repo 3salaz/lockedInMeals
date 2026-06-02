@@ -153,8 +153,11 @@ export const lockedInMealsHomepageContent: HomepageContent = {
         emailPlaceholder: "Enter your email",
         submitLabel: "Request Meal Info",
         submittingLabel: "Sending...",
-        secondaryCtaLabel: "Email Us",
-        secondaryCtaHref: "mailto:hello@lockedinmeals.com?subject=Meal Prep Inquiry | Web",
+        socialLinks: {
+            gmail: "mailto:hello@example.com?subject=Meal Prep Inquiry | Web",
+            instagram: "https://www.instagram.com/lockedinmeals/",
+            facebook: "https://facebook.com",
+        },
         footerText: "© 2026 Locked In Meals. All rights reserved.",
     },
 };
